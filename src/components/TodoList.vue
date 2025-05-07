@@ -8,6 +8,17 @@ const todos = ref<Todo[]>([
   { id: 3, text: 'Deploy the App', completed: false },
 ])
 
+const newTodoText = ref('')
+
+function addTodo(text: string) {
+  const newTodo: Todo = {
+    id: todos.value.length + 1,
+    text,
+    completed: false,
+  }
+  todos.value.push(newTodo)
+}
+
 function toggleTodo(id: number) {
   const todo = todos.value.find((todo) => todo.id === id)
   if (todo) {
@@ -28,6 +39,13 @@ function removeTodo(id: number) {
 <template>
   <div class="todo-list">
     <h2>Todo List</h2>
+    <input
+      type="text"
+      v-model="newTodoText"
+      placeholder="Add a new todo"
+      @keyup.enter="addTodo(newTodoText)"
+    />
+    <button @click="addTodo(newTodoText)">Add</button>
     <ul>
       <li v-for="todo in todos" :key="todo.id" class="todo-row">
         <TodoItem :todo="todo" @toggle="toggleTodo" />
