@@ -40,6 +40,7 @@ function removeTodo(id: number) {
   <div class="todo-list">
     <h2>Todo List</h2>
     <input
+      class="todo-input"
       type="text"
       v-model="newTodoText"
       placeholder="Add a new todo"
@@ -102,5 +103,27 @@ function removeTodo(id: number) {
 }
 .todo-row button:disabled:active {
   background-color: #ccc;
+}
+.todo-input {
+  width: 100%;
+  padding: 0.5rem;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  margin-bottom: 1rem;
+}
+.todo-input:focus {
+  outline: none;
+  border-color: #0848b0;
+  box-shadow: 0 0 0 2px rgba(255, 77, 79, 0.5);
+}
+.todo-input::placeholder {
+  color: #ccc;
+}
+.todo-input:disabled {
+  background-color: #f0f0f0;
+  cursor: not-allowed;
+}
+.todo-input:disabled:focus {
+  box-shadow: none;
 }
 </style>
